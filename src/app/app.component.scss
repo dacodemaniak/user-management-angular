@@ -1,0 +1,11 @@
+$input-line-color: rgb(10, 25, 200);
+input {
+    border: none;
+    border-bottom: solid 1px $input-line-color;
+
+    // input[type="text"]
+    &[type="text"] {
+        border-bottom: dashed 1px lighten($input-line-color, 40%)
+    }
+}
+
