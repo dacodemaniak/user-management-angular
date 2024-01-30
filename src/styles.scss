@@ -14,11 +14,12 @@ $fifth-color: #d5bdaf;
 **/
 $--primary: $fifth-color;
 $--secondary: $second-color;
-$--ligth: $main-color;
+$--light: $main-color;
 $--warn: $third-color;
 $--danger: darken($four-color, 15%);
 
 body {
     margin: 0;
     padding: 0;
+    background-color: $--light;
 }
