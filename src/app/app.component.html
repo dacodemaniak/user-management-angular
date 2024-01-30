@@ -2,12 +2,37 @@
   {{ title | uppercase }}
 </p>
 
-<div>{{ counter }}</div>
+<div id="user-toolbar">
+  <div>
+    <button [ngClass]="{
+      'tri-state-button': true,
+      'no-state': true
+    }"
+    (click)="handleUserSelection()">
+  {{ buttonStateContent }} </button>
+  </div>
+  <div>
+    {{ getSelectedUsers() }} / {{ users.length }}
+  </div>
+</div>
 
 <ul>
   <ng-container *ngFor="let user of users">
-    <li *ngIf="user.lastname !== 'Monde'">
-      {{ user.lastname }} {{ user.firstname }}
+    <li 
+      [ngClass]="{
+        'administrator': user.role === 'Administrator', 
+        'contributor': user.role === 'Contributor',
+        'visitor': user.role === 'Visitor',
+        'striked': user.isSelected}"
+      (click)="toggleUserSelection(user)"
+    >
+      <div>{{ user.lastname }} {{ user.firstname }}</div>
+      <div *ngIf="user.isSelected">
+        <button
+          type="button"
+          (click)="removeUser(user)"
+        >x</button>
+      </div>
     </li>
   </ng-container>
 
