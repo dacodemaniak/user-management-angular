@@ -1,1 +1,29 @@
-<p>home works!</p>
+<ng-container *ngIf="users.length"; else loader>
+    <table class="table condensed striped">
+        <thead>
+            <tr>
+                <th><input type="checkbox"></th>
+                <th>#</th>
+                <th>Lastname</th>
+                <th>Firstname</th>
+                <th>Role</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr *ngFor="let user of users">
+                <td><input type="checkbox"></td>
+                <td>{{ user.id }}</td>
+                <td>{{ user.lastname | uppercase }}</td>
+                <td>{{ user.firstname }}</td>
+                <td>{{ user.role.label | uppercase }}</td>
+            </tr>
+        </tbody>
+    </table>
+</ng-container>
+
+<ng-template #loader>
+    <div class="loader">
+        Users are loaded..
+    </div>
+</ng-template>
+
