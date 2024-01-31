@@ -48,7 +48,8 @@ export class HomeComponent {
       this.users.sort(
         sorter.getSorter()
       )
+      return
     }
-
+    throw new TypeError(`No candidate found for ${onColumn}`)
   }
 }
