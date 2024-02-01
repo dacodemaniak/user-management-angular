@@ -1,0 +1,49 @@
+<h1>Add a User</h1>
+
+<ng-container *ngIf="form">
+    <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput formControlName="lastname" placeholder="User lastname">
+                <mat-error
+                    *ngIf="c['lastname'].touched && c['lastname'].errors"
+                >
+                    Lastname is required so it cannot be empty
+                </mat-error>
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <input matInput formControlName="firstname" placeholder="User firstname">
+            </mat-form-field>
+        </div>
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Date of Birth</mat-label>
+                <input matInput [matDatepicker]="dob" formControlName="birthdate">
+                <mat-datepicker-toggle matSuffix [for]="dob"></mat-datepicker-toggle>
+                <mat-datepicker #dob></mat-datepicker>
+                <mat-error
+                    *ngIf="c['birthdate'].touched && c['birthdate'].errors"
+                >
+                    Birthdate is required so it cannot be empty
+                </mat-error>
+            </mat-form-field>
+        </div>
+    
+        <div class="form-group">
+            <mat-form-field>
+                <mat-label>Role</mat-label>
+                <mat-select formControlName="role">
+                  @for (role of roles; track role) {
+                    <mat-option [value]="role.id">{{role.label}}</mat-option>
+                  }
+                </mat-select>
+              </mat-form-field>
+        </div>
+
+        <div class="form-group">
+            <button mat-raised-button color="primary" [disabled]="form.invalid">Add</button>
+        </div>
+    </form>    
+</ng-container>
